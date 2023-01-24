@@ -3,11 +3,15 @@ import { CommonModule } from '@angular/common';
 
 import { ApplicationRoutingModule } from './application-routing.module';
 import { StoreComponent } from './store/store.component';
+import { RegisterComponent } from './register/register.component';
+
 
 
 @NgModule({
   declarations: [
-    StoreComponent
+    StoreComponent,
+    RegisterComponent,
+
   ],
   imports: [
     CommonModule,

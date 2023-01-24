@@ -1,1 +1,15 @@
-<p>home works!</p>
+<div class="card lg:card-side bg-base-100 shadow-xl p-16 mt-11">
+  <figure><img src="https://img.freepik.com/fotos-premium/ilustracion-controlador-juego-computadora-pc-juego-videoconsola-jugador-kawaii_691560-5881.jpg?w=740" alt="Album"/></figure>
+  <div class="card-body">
+    <h1 class="card-title">Bienvenido a Tu Tienda Virtual</h1>
+    <p>Vende o Compra los productos más soliciotados, da click en ver catalogo para ver los prodcutos disponibles
+      o agrega uno nuevo dando click en agregar producto.
+
+    </p>
+    <div class="card-actions justify-end">
+      <button class="btn btn-primary" routerLink="/store">Ver Catalogo</button>
+      <button class="btn btn-primary" (click)="addProductToInventory()">Agregar Producto</button>
+    </div>
+  </div>
+</div>
+

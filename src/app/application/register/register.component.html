@@ -1,0 +1,48 @@
+<div class="relative z-10 p-16" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
+  <h1 class="text-lg font-medium text-gray-900" id="slide-over-title">Registro de Compra</h1>
+
+        <div class="pointer-events-auto w-screen max-w-md">
+          <div class="flex h-full flex-col  bg-white shadow-xl">
+            <div class="flex-1 overflow-y-auto py-6 px-4 sm:px-6">
+              <div *ngFor="let register of listRegister" class="flex items-start justify-between">
+                <h2 class="text-lg font-medium text-gray-900" id="slide-over-title">Articulos Comprados</h2>
+                <p class="mt-1 text-sm text-gray-500">Nombre: {{register.clientName}}</p>
+                <p class="mt-1 text-sm text-gray-500">ID:{{register.idType}} </p>
+                <p class="mt-1 text-sm text-gray-500">N°{{register.idClient}}</p>
+
+                 </div>
+
+              <div  class="mt-8">
+
+                <div class="flow-root">
+                  <ul role="list" class="-my-6 divide-y divide-gray-200">
+                    <li *ngFor="let product of producsList"  class="flex py-6">
+                      <div class="ml-4 flex flex-1 flex-col">
+                        <div>
+                          <div class="flex justify-between text-base font-medium text-gray-900">
+                            <h3>
+                               Producto Seleccionado: {{product.idProduct
+                              }}
+                            </h3>
+                            <p class="ml-4">Cantidad:{{product.quantity
+                            }}</p>
+                          </div>
+                          <p class="mt-1 text-sm text-gray-500">Salmon</p>
+                        </div>
+                        <div class="flex flex-1 items-end justify-between text-sm">
+                          <p class="text-gray-500">Qty 1</p>
+
+                          <div class="flex">
+                            <button type="button" class="font-medium text-indigo-600 hover:text-indigo-500">Remove</button>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+
