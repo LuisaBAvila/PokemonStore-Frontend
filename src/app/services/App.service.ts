@@ -28,4 +28,7 @@ export class AppService {
   addProduct(body:any){
     return this.http.post(`${environment.urlBase}add`,body)
   }
+  deleteProduct(id:string){
+    return this.http.delete(`${environment.urlBase}delteProduct/${id}`)
+  }
 }

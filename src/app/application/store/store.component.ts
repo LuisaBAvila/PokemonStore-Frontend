@@ -19,11 +19,32 @@ export class StoreComponent {
 
   ngOnInit():void{
     this.getlistProducts();
-
   }
-
   getlistProducts(){
     this.request$.getAllProductsInventory().subscribe((prodcuts) =>{ this.listProducts=prodcuts})
+
+  }
+  deleteProdcut(id:string){
+    Swal.fire({
+      title: 'Estas seguro?',
+      text: "No podras revertir esta operación",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, eliminar!',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.request$.deleteProduct(id).subscribe(()=>{this.getlistProducts(); Swal.fire(
+          'Deleted!',
+          'Tu aplicacion ha sido eliminada.',
+          'success'
+        ) })
+
+      }
+    })
+
   }
 
   addProducts(id :string){
@@ -64,7 +85,7 @@ export class StoreComponent {
         this.getlistProducts();
 
       });
-      debugger
+
       this.request$.registerPurchase(this.bodyBuyer).subscribe({next:()=> console.log("register Ok"),error:console.log});
 
 

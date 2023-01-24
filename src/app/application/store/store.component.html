@@ -1,6 +1,10 @@
 <div class="bg-white">
   <div class="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
     <h2 class="text-2xl font-bold tracking-tight text-gray-900">Productos</h2>
+    <div class="card-actions justify-end">
+      <button class="btn btn-active btn-secondary  btn-sm" routerLink="/register">Ver Registro de Compra</button>
+
+    </div>
 
     <div class="mt-6 grid  sm:grid-cols-2 lg:grid-cols-3 ">
       <div *ngFor="let product of listProducts" class="products">
@@ -10,6 +14,8 @@
             <h2 class="card-title">
               {{product.name}}
               <div class="badge badge-secondary">NEW</div>
+              <button class="btn btn-xs" (click)="deleteProdcut(product.id)">Eliminar</button>
+              <button class="btn btn-xs" >Editar</button>
             </h2>
             <p> Unidades disponibles: {{product.inventory}}</p>
             <div class="card-actions justify-end">
