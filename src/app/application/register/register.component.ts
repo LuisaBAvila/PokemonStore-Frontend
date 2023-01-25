@@ -9,6 +9,9 @@ import { AppService } from 'src/app/services/App.service';
 export class RegisterComponent {
   listRegister !:any;
   producsList !:any;
+  nameProduct:string='';
+  quantity:number=0;
+
 
   constructor(private request$ :AppService ){}
   ngOnInit():void{
@@ -24,8 +27,11 @@ export class RegisterComponent {
   getProducts(){
     this.listRegister.forEach((element:any) => {
       this.producsList=element.products;
-      console.log(this.producsList)
     });
+  }
+
+  getdetailProduct(id:string){
+    this.request$.getProductId(id).subscribe((detail:any)=> {this.nameProduct=detail.name, this.quantity= detail.inventory})
   }
 
 

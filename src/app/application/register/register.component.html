@@ -27,13 +27,22 @@
                             <p class="ml-4">Cantidad:{{product.quantity
                             }}</p>
                           </div>
-                          <p class="mt-1 text-sm text-gray-500">Salmon</p>
                         </div>
                         <div class="flex flex-1 items-end justify-between text-sm">
                           <p class="text-gray-500">Qty 1</p>
 
                           <div class="flex">
-                            <button type="button" class="font-medium text-indigo-600 hover:text-indigo-500">Remove</button>
+                            <label for="my-modal-3" class="btn btn-primary btn-sm font-medium text-white hover:text-indigo-500" (click)="getdetailProduct(product.idProduct)" >Detalle</label>
+                            <input type="checkbox" id="my-modal-3" class="modal-toggle" />
+                            <div class="modal">
+                              <div class="modal-box relative">
+                                <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                                <h3 class="text-lg font-bold">Detalle Del Prodcuto</h3>
+                                <p value="hola">Nombre del producto: {{nameProduct}}</p>
+                                <p value="hola">Nombre del producto: {{quantity}}</p>
+
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>

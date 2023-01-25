@@ -33,4 +33,7 @@ export class AppService {
   updateProdcut(id:string,body:any){
     return this.http.put(`${environment.urlBase}update/${id}`,body)
   }
+  getProductId(id:string){
+    return this.http.get(`${environment.urlBase}byId/${id}`)
+  }
 }
