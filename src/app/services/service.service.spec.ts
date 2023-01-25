@@ -1,13 +1,23 @@
 import { TestBed } from '@angular/core/testing';
+import { HttpClient } from '@angular/common/http';
+import { AppService} from './App.service';
 
-import { ServiceService } from './App.service';
+class HttpClientMock {
+  get = jasmine.createSpy('httpClient.get');
+}
 
 describe('ServiceService', () => {
-  let service: ServiceService;
+  let service: AppService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(ServiceService);
+    TestBed.configureTestingModule({providers: [
+      AppService,
+      {
+        provide: HttpClient,
+        useClass: HttpClientMock
+      }
+    ]});
+    service = TestBed.inject(AppService);
   });
 
   it('should be created', () => {
