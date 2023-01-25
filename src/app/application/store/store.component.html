@@ -14,12 +14,24 @@
             <h2 class="card-title">
               {{product.name}}
               <div class="badge badge-secondary">NEW</div>
-              <button class="btn btn-xs" (click)="deleteProdcut(product.id)">Eliminar</button>
-              <button class="btn btn-xs" >Editar</button>
+              <label for="my-modal-3" class="btn  btn-sm" (click)="updateProdcuts(product.id)">Configuración</label>
+              <input type="checkbox" id="my-modal-3" class="modal-toggle" />
+              <div class="modal">
+                <div class="modal-box relative">
+                  <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2" (click)="getlistProducts()">✕</label>
+                  <h3 class="text-lg font-bold">Configuración</h3>
+                  <app-edit-product [idProdcutUpdate]="idProdcutUpdate"></app-edit-product>
+                </div>
+              </div>
+
+              <div><app-edit-product *ngIf="stateProdcutModal" [idProdcutUpdate]="idProdcutUpdate"></app-edit-product></div>
             </h2>
             <p> Unidades disponibles: {{product.inventory}}</p>
+            <p> Min de unidades: {{product.minProducts}}</p>
+            <p> Max de unidades: {{product.maxProducts}}</p>
+
             <div class="card-actions justify-end">
-              <button class="btn btn-active btn-secondary  btn-sm" (click)="addProducts(product.id)">Comprar</button>
+              <button class="btn btn-active btn-secondary  btn-sm" (click)="addProducts(product.id, product.minProducts,product.maxProducts)">Comprar</button>
 
             </div>
           </div>
@@ -28,3 +40,6 @@
     </div>
   </div>
 </div>
+
+
+

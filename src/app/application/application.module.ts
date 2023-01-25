@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ApplicationRoutingModule } from './application-routing.module';
 import { StoreComponent } from './store/store.component';
 import { RegisterComponent } from './register/register.component';
+import { EditProductComponent } from './edit-product/edit-product.component';
 
 
 
@@ -11,6 +12,7 @@ import { RegisterComponent } from './register/register.component';
   declarations: [
     StoreComponent,
     RegisterComponent,
+    EditProductComponent,
 
   ],
   imports: [

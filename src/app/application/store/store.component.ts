@@ -15,39 +15,26 @@ export class StoreComponent {
   quantity:number=0;
   bodyProductSold!: any;
   bodyBuyer !:any;
+  stateProdcutModal:boolean =false;
+  idProdcutUpdate!:string;
   constructor(private request$ :AppService ){}
 
   ngOnInit():void{
     this.getlistProducts();
   }
   getlistProducts(){
-    this.request$.getAllProductsInventory().subscribe((prodcuts) =>{ this.listProducts=prodcuts})
-
-  }
-  deleteProdcut(id:string){
-    Swal.fire({
-      title: 'Estas seguro?',
-      text: "No podras revertir esta operación",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Si, eliminar!',
-      cancelButtonText: 'Cancelar'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.request$.deleteProduct(id).subscribe(()=>{this.getlistProducts(); Swal.fire(
-          'Deleted!',
-          'Tu aplicacion ha sido eliminada.',
-          'success'
-        ) })
-
-      }
-    })
+    this.request$.getAllProductsInventory().subscribe((prodcuts) =>{ this.listProducts=prodcuts, console.log(prodcuts)})
 
   }
 
-  addProducts(id :string){
+  updateProdcuts(id: string){
+
+    this.idProdcutUpdate =id;
+    console.log(this.idProdcutUpdate)
+
+  }
+
+  addProducts(id :string, min:string,max:string){
     Swal.fire(
       {
         html: `<div class="pt-1"><input type="text" placeholder="TypeID" class="input input-bordered input-info w-full max-w-xs"  id="typeId"/></div>
@@ -63,6 +50,9 @@ export class StoreComponent {
         const typeId=document.getElementById('typeId') as HTMLInputElement;
         if(!cantidad.value || !userID.value || !nameUser.value || !typeId.value ){
           Swal.showValidationMessage('Por favor ingrese la información completa')
+        }
+        if(cantidad.value < min || cantidad.value > max ){
+          Swal.showValidationMessage('No cumple con la cantidad de prodcutos requeridos')
         }
         return{
           productSold:{
@@ -83,13 +73,11 @@ export class StoreComponent {
       this.bodyBuyer = result.value?.buyer;
       this.request$.addProductToBasket(id,this.bodyProductSold).subscribe(()=> {
         this.getlistProducts();
-
       });
-
       this.request$.registerPurchase(this.bodyBuyer).subscribe({next:()=> console.log("register Ok"),error:console.log});
-
-
     })
   }
+
+
 
 }

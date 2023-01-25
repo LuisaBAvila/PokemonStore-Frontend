@@ -1,8 +1,7 @@
-import { Injectable, EventEmitter,Output } from '@angular/core';
-import {HttpClient,HttpHeaders} from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 import {environment} from 'src/environments/environment'
-import {Observable} from 'rxjs';
-import { ProductSold } from './../application/interfaces/ProductSold.inteface';
+
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +29,8 @@ export class AppService {
   }
   deleteProduct(id:string){
     return this.http.delete(`${environment.urlBase}delteProduct/${id}`)
+  }
+  updateProdcut(id:string,body:any){
+    return this.http.put(`${environment.urlBase}update/${id}`,body)
   }
 }

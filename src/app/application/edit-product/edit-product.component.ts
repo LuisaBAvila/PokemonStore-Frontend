@@ -1,17 +1,43 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { AppService } from 'src/app/services/App.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-edit-product',
+  templateUrl: './edit-product.component.html',
+  styleUrls: ['./edit-product.component.scss']
 })
-export class HomeComponent {
-  bodyProdcut!:any;
+export class EditProductComponent {
+  bodyProduct!: any;
+
+  @Input('idProdcutUpdate') idProdcutUpdate!: string;
+
+
   constructor(private request$ :AppService ){}
 
 
+  deleteProdcut(){
+    Swal.fire({
+      title: 'Estas seguro?',
+      text: "No podras revertir esta operación",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, eliminar!',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.request$.deleteProduct(this.idProdcutUpdate).subscribe(()=>{ Swal.fire(
+          'Deleted!',
+          'Tu aplicacion ha sido eliminada.',
+          'success'
+        ) })
+
+      }
+    })
+
+  }
 
   addProductToInventory(){
     Swal.fire(
@@ -44,11 +70,18 @@ export class HomeComponent {
       }
       }
     ).then((result)=>{
-      this.bodyProdcut =result.value;
-      this.request$.addProduct(this.bodyProdcut).subscribe({next:()=> console.log("register Ok"),error:console.log})
+      this.bodyProduct =result.value;
+      this.request$.updateProdcut(this.idProdcutUpdate,this.bodyProduct).subscribe(()=>{
+        Swal.fire(
+          'Actualizada',
+          'Tu aplicacion ha sido actualizada',
+          'success'
+        )
+      })
 
     })
 
   }
+
 
 }
