@@ -12,3 +12,11 @@ El proyecto cuenta con tres rutas:
 
 ## video
 https://user-images.githubusercontent.com/122808459/214463206-ff86a279-5656-4837-93e0-1c26b572f3bc.mp4
+
+## Video Compra
+https://user-images.githubusercontent.com/122808459/214465089-aef58b7e-a2aa-4f0b-9274-13b0ea5e5f73.mp4
+
+## Deuda tecnica
+Refactorización del codigo.
+Refinamiento de funcionalidades.
+Pruebas unitarias
